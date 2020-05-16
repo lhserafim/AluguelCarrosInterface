@@ -6,10 +6,17 @@ import model.entities.Invoice;
 public class RentalServices {
     private Double pricePerHour;
     private Double pricePerDay;
-    // Associação com BrazilTaxService
-    private BrazilTaxService taxService;
 
-    public RentalServices(Double pricePerHour, Double pricePerDay, BrazilTaxService taxService) {
+    // Sem usar interface
+    // Associação com BrazilTaxService
+    //private BrazilTaxService taxService;
+
+    // Usando interface
+    private TaxService taxService;
+
+
+    public RentalServices(Double pricePerHour, Double pricePerDay, TaxService taxService) {
+        super();
         this.pricePerHour = pricePerHour;
         this.pricePerDay = pricePerDay;
         this.taxService = taxService;
@@ -21,6 +28,7 @@ public class RentalServices {
         long t2 = carRental.getFinish().getTime();
         // fazendo cast, para garantir o resultado em double
         double hours = (double) (t2 - t1) / 1000 / 60 / 60; // forçando a conversão de milisegundos p/ horas
+
 
         double basicPayment;
         if (hours <= 12.0) {
@@ -37,7 +45,5 @@ public class RentalServices {
         // Instanciar um novo objeto CarRental
         // Criei um novo objeto de nota de pagamento e associei ele ao meu objeto de aluguel
         carRental.setInvoice(new Invoice(basicPayment, tax));
-
-
     }
 }
