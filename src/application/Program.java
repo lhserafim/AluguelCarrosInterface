@@ -15,13 +15,13 @@ public class Program {
     public static void main(String args[]) throws ParseException {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:ss");
-        System.out.println("Enter Rental Data:");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        System.out.println("Enter rental data");
         System.out.print("Car model: ");
         String carModel = sc.nextLine();
-        System.out.print("Pickup: ");
+        System.out.print("Pickup (dd/MM/yyyy HH:mm): ");
         Date start = sdf.parse(sc.nextLine());
-        System.out.print("Return: ");
+        System.out.print("Return (dd/MM/yyyy HH:mm): ");
         Date finish = sdf.parse(sc.nextLine());
 
         // Instanciar a classe de aluguel de carro
